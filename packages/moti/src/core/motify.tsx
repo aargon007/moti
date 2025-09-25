@@ -1,15 +1,15 @@
 import { usePresence, PresenceContext } from 'framer-motion'
 import React, {
   forwardRef,
-  ComponentType,
-  FunctionComponent,
+  type ComponentType,
+  type FunctionComponent,
   useContext,
 } from 'react'
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native'
 import Animated, {
   BaseAnimationBuilder,
-  EntryExitAnimationFunction,
-  LayoutAnimationFunction,
+  type EntryExitAnimationFunction,
+  type LayoutAnimationFunction,
 } from 'react-native-reanimated'
 
 import type { MotiProps } from './types'
@@ -28,10 +28,10 @@ export default function motify<
     const Motified = forwardRef<
       Ref,
       Props &
-        AnimatedProps<Props> &
-        MotiProps<Animate> & {
-          children?: React.ReactNode
-        }
+      AnimatedProps<Props> &
+      MotiProps<Animate> & {
+        children?: React.ReactNode
+      }
     >(function Moti(props, ref) {
       const animated = useMotify({
         ...props,
@@ -50,11 +50,10 @@ export default function motify<
       )
     })
 
-    Motified.displayName = `Moti.${
-      ComponentWithoutAnimation.displayName ||
+    Motified.displayName = `Moti.${ComponentWithoutAnimation.displayName ||
       ComponentWithoutAnimation.name ||
       'NoName'
-    }`
+      }`
 
     return Motified
   }
@@ -69,17 +68,17 @@ export default function motify<
 type AnimatedProps<Props> = {
   animatedProps?: Partial<Props>
   layout?:
-    | BaseAnimationBuilder
-    | LayoutAnimationFunction
-    | typeof BaseAnimationBuilder
+  | BaseAnimationBuilder
+  | LayoutAnimationFunction
+  | typeof BaseAnimationBuilder
   entering?:
-    | BaseAnimationBuilder
-    | typeof BaseAnimationBuilder
-    | EntryExitAnimationFunction
-    | Keyframe
+  | BaseAnimationBuilder
+  | typeof BaseAnimationBuilder
+  | EntryExitAnimationFunction
+  | Keyframe
   exiting?:
-    | BaseAnimationBuilder
-    | typeof BaseAnimationBuilder
-    | EntryExitAnimationFunction
-    | Keyframe
+  | BaseAnimationBuilder
+  | typeof BaseAnimationBuilder
+  | EntryExitAnimationFunction
+  | Keyframe
 }

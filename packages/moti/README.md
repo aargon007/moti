@@ -1,6 +1,6 @@
 <img src="/assets/banner2.png" />
 
-The universal React Native animation library, powered by Reanimated 3.
+The universal React Native animation library, powered by Reanimated 4.
 
 ```jsx
 <MotiView from={{ opacity: 0 }} animate={{ opacity: 1 }} />

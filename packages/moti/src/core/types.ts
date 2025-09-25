@@ -14,7 +14,7 @@ import type {
   ImageStyle,
   TextStyle,
   ViewStyle,
-  
+
 } from 'react-native'
 import type {
   SharedValue,
@@ -101,15 +101,15 @@ export type SequenceItem<Value> =
   | SequenceItemObject<Value>
 export type StyleValueWithSequenceArraysWithoutTransform<T> = {
   [key in Exclude<keyof T, 'transform' | keyof Transforms>]:
-    | T[key] // either the value
-    // or an array of values for a sequence
-    | SequenceItem<T[ExcludeArrayType<ExcludeObject<key>>]>[]
+  | T[key] // either the value
+  // or an array of values for a sequence
+  | SequenceItem<T[ExcludeArrayType<ExcludeObject<key>>]>[]
 } & {
   // even though the TS types don't allow transform strings, we do for percentages & degrees
   [key in Extract<keyof T, keyof Transforms>]?:
-    | T[key]
-    | (string & {})
-    | SequenceItem<T[key] | (string & {})>[]
+  | T[key]
+  | (string & {})
+  | SequenceItem<T[key] | (string & {})>[]
 }
 
 export type StyleValueWithSequenceArraysWithTransform = {
@@ -118,7 +118,7 @@ export type StyleValueWithSequenceArraysWithTransform = {
 
 export type StyleValueWithSequenceArrays<T> = Partial<
   StyleValueWithSequenceArraysWithoutTransform<T> &
-    StyleValueWithSequenceArraysWithTransform
+  StyleValueWithSequenceArraysWithTransform
 >
 
 export type OnDidAnimate<
@@ -257,11 +257,11 @@ type ExcludeObject<T> = T extends object ? never : T
 
 type StyleValueWithCallbacks<Animate> = {
   [Key in keyof Animate]?:
-    | Animate[Key]
-    | {
-        value: ExcludeObject<ExcludeArrayType<Animate[Key]>>
-        onDidAnimate: InlineOnDidAnimate<Animate[Key]>
-      }
+  | Animate[Key]
+  | {
+    value: ExcludeObject<ExcludeArrayType<Animate[Key]>>
+    onDidAnimate: InlineOnDidAnimate<Animate[Key]>
+  }
 }
 
 export interface MotiProps<
@@ -310,9 +310,9 @@ export interface MotiProps<
    * It follows the same API as the `exit` prop from `framer-motion`. Feel free to reference their docs: https://www.framer.com/motion/animate-presence/
    * */
   exit?:
-    | AnimateWithTransforms
-    | boolean
-    | ((custom?: any) => AnimateWithTransforms)
+  | AnimateWithTransforms
+  | boolean
+  | ((custom?: any) => AnimateWithTransforms)
   /**
    * Define animation configurations.
    *
@@ -360,8 +360,8 @@ export interface MotiProps<
    *
    */
   exitTransition?:
-    | MotiTransitionProp<AnimateWithTransforms>
-    | ((custom?: any) => MotiTransition<AnimateWithTransforms>)
+  | MotiTransitionProp<AnimateWithTransforms>
+  | ((custom?: any) => MotiTransition<AnimateWithTransforms>)
   /**
    * Optionally delay the `animate` field.
    *
@@ -406,7 +406,7 @@ export type Variants<
   AnimateType = ImageStyle & TextStyle & ViewStyle,
   // edit the style props to remove transform array, flattening it
   AnimateWithTransformsAndTransition = StyleValueWithReplacedTransforms<AnimateType> &
-    WithTransition,
+  WithTransition,
   // allow the style values to be arrays for sequences, where values are primitives or objects with configs
   Animate = StyleValueWithSequenceArrays<AnimateWithTransformsAndTransition>
 > = {
@@ -504,7 +504,7 @@ export type DynamicStyleProp<
   // edit the style props to remove transform array, flattening it
   // AnimateWithTransitions = Omit<AnimateType, 'transform'> & Partial<Transforms>,
   AnimateWithTransforms = StyleValueWithReplacedTransforms<AnimateType>
-  // allow the style values to be arrays for sequences, where values are primitives or objects with configs
+// allow the style values to be arrays for sequences, where values are primitives or objects with configs
 > = NonNullable<StyleValueWithSequenceArrays<AnimateWithTransforms>> &
   WithTransition
 
@@ -550,3 +550,11 @@ export type UseDynamicAnimationState<Animate = FallbackAnimateProp> = {
 export type ExcludeFunctionKeys<T> = {
   [K in keyof T as T[K] extends (...a: any[]) => any ? never : K]?: T[K]
 }
+
+export type ValidTimingConfigKeys = 'clamp' | 'velocity' | 'deceleration' | 'velocityFactor' | 'reduceMotion';
+
+export type AnimationConfig =
+  | WithTimingConfig
+  | WithSpringConfig
+  | WithDecayConfig
+  | Record<string, unknown>; // fallback for no-animation

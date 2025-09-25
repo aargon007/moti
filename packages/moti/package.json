@@ -1,6 +1,6 @@
 {
   "name": "moti",
-  "description": "The universal React Native animation library, powered by Reanimated 3. 🦉",
+  "description": "The universal React Native animation library, powered by Reanimated 4. 🦉",
   "version": "0.30.0",
   "keywords": [
     "react-native",
@@ -73,15 +73,18 @@
     "prepublishOnly": "expo-module prepublishOnly"
   },
   "peerDependencies": {
-    "react-native-reanimated": "*"
+    "react-native-reanimated": "*",
+    "react-native-worklets": "*"
   },
   "devDependencies": {
-    "@react-navigation/native": "^6.1.18",
-    "expo-linear-gradient": "^10.0.3",
-    "expo-module-scripts": "^3.4.1",
+    "@react-navigation/native": "^7.1.17",
+    "expo-linear-gradient": "^15.0.7",
+    "expo-module-scripts": "^5.0.7",
     "react-native-linear-gradient": "^2.6.2",
-    "react-native-reanimated": "3.11.0",
-    "typescript": "^5.2.0"
+    "react-native-reanimated": "4.1.2",
+    "react-native-safe-area-context": "^5.6.1",
+    "react-native-worklets": "^0.6.0",
+    "typescript": "^5.9.2"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -99,6 +102,6 @@
   },
   "gitHead": "36d489545d0a4e3b83af8650bdb9881a251fa777",
   "dependencies": {
-    "framer-motion": "^6.5.1"
+    "framer-motion": "^12.23.21"
   }
 }
